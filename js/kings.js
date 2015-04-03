@@ -22,9 +22,12 @@ var action_map = {
 function init_game(){
   connect_buttons();
   connect_views();
+  resize_card_view();
 
   make_deck();
   next_button.click();
+
+  $(window).resize( _.debounce(resize_card_view, 100, true ));
 }
 
 function connect_buttons(){
@@ -46,6 +49,8 @@ function connect_buttons(){
       deck = [];
       action_view.html("Last King! Drink the Kings Kup sucka!");
     }
+
+    resize_card_view();
   });
 
   reset_button = $('#reset_button');
@@ -59,7 +64,7 @@ function connect_buttons(){
 }
 
 function connect_views(){
-  card_view = $('#card_view').fitText(.12);
+  card_view = $('#card_view');
   action_view = $('#action_view');
   messages = $('#messages');
 }
@@ -68,4 +73,9 @@ function make_deck(){
   deck = [];
   _(4).times(function(){ deck = deck.concat( _(action_map).keys() )});
   deck = _(deck).shuffle();
+}
+
+function resize_card_view(){
+  card_view.width( Math.min( window.screen.width, card_view.height() ));
+  card_view.fitText(.13);
 }

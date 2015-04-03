@@ -21,6 +21,7 @@ h1 {
   -webkit-flex: 1;
   font-size: 36px;
   text-align: center;
+  align-self: center;
 }
 
 #action_view {
