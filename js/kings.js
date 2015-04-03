@@ -59,7 +59,7 @@ function connect_buttons(){
 }
 
 function connect_views(){
-  card_view = $('#card_view');
+  card_view = $('#card_view').fitText(.12);
   action_view = $('#action_view');
   messages = $('#messages');
 }

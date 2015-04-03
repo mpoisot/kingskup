@@ -1,0 +1,28 @@
+#game_pg{
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+
+  padding: 5px 15px 10px 15px;
+}
+
+h1 {
+  /*text-align: center;*/
+}
+
+#top_bar {
+
+}
+
+#card_view {
+  flex: 1;
+  -webkit-flex: 1;
+  font-size: 36px;
+  text-align: center;
+}
+
+#action_view {
+  font-size: 22px;
+}
