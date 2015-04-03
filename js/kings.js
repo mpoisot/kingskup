@@ -2,7 +2,7 @@ $().ready(function(){
   init_game();
 });
 
-var deck, next_button, reset_button, card_view, action_view;
+var deck, next_button, reset_button, card_view, action_view, messages;
 var action_map = {
   'A': 'Waterfall: Keep drinking til the person on your right finishes drinking.',
 	'2': 'You: Pick someone to drink.',
@@ -32,25 +32,36 @@ function connect_buttons(){
   next_button.click(function(event){
     event.preventDefault();
 
-    // TODO - deck empty
-    // TODO - last king drawn
+    if(deck.length === 0 ){
+      messages.html("Game Over");
+      return;
+    }
 
     var card = deck.pop()
     card_view.html(card);
     action_view.html( action_map[card] );
+
+    // Last king drawn
+    if( ! _(deck).contains("K") ){
+      deck = [];
+      action_view.html("Last King! Drink the Kings Kup sucka!");
+    }
   });
 
   reset_button = $('#reset_button');
   reset_button.click(function(event){
     event.preventDefault();
-
-    console.log("TODO - reset");
+    
+    messages.html('');
+    make_deck();
+    next_button.click();
   });
 }
 
 function connect_views(){
   card_view = $('#card_view');
   action_view = $('#action_view');
+  messages = $('#messages');
 }
 
 function make_deck(){
